@@ -120,15 +120,17 @@ ul{list-style:none}
 .bar i{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
 .bar i.run{animation:fill 6s linear forwards}
 
-/* cornici foto: statiche, nessuna animazione sull'immagine (richiesta del cliente) */
+/* cornici foto: dissolvenza pura, nessun movimento */
 .fr,.tile{overflow:hidden;background:#ddd9d2}
 .fr,.tile{aspect-ratio:4/5}
 .pair .fr img,.ig .tile img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
 .pair.rev .fr{order:2}
 @media (max-width:820px){.pair.rev .fr{order:0}}
+.js .fr,.js .tile{opacity:0;transition:opacity 1.4s var(--ease)}
+.js .fr.in,.js .tile.in{opacity:1}
 
 /* comparsa dolce dei testi */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease);transition-delay:var(--d,0s)}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 .js .rv.in{opacity:1;transform:none}
 
 /* contatti: la linea si disegna */
@@ -259,7 +261,7 @@ ul{list-style:none}
   if(!calm&&S.length>1)setInterval(function(){if(document.hidden)return;S[cur].classList.remove('on');cur=(cur+1)%S.length;S[cur].classList.add('on');setCount();runBar()},6000);
 
   /* comparsa al passaggio nello schermo: una volta sola (solo testi) */
-  var els=[].slice.call(document.querySelectorAll('.rv'));
+  var els=[].slice.call(document.querySelectorAll('.rv,.fr,.tile'));
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
   var io=new IntersectionObserver(function(list){list.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.08,rootMargin:'0px 0px 8% 0px'});
   els.forEach(function(e){io.observe(e)});
