@@ -111,9 +111,7 @@ ul{list-style:none}
 .prog{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;opacity:0;transition:opacity .6s}
 .hdr.solid .prog{opacity:.55}
 
-/* apertura: zoom lentissimo, ingresso del testo, contatore e barra */
-.js .slide img{transform:scale(1.07);transition:transform 0s linear 2.2s}
-.js .slide.on img{transform:scale(1);transition:transform 9s cubic-bezier(.25,.6,.3,1)}
+/* apertura: ingresso del testo, contatore e barra (foto ferma, nessuno zoom) */
 .js .htxt b{animation:rise 1.5s var(--ease) .3s both}
 .js .htxt span{animation:rise 1.5s var(--ease) .8s both}
 .js .hctl{animation:fade 1.6s ease 1.2s both}
