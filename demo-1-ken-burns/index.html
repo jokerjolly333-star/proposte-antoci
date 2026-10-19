@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Antoci — Ken Burns</title>
+<script>if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))document.documentElement.classList.add("js")</script>
+<meta name="description" content="Antoci is an Italian sculpture and design studio based in Ragusa, Sicily. Ideas shaped into matter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400&family=Cormorant+Garamond:wght@500&display=swap">
+<style>
+/* Proposta B, ripulita: stessa tipografia, stessa apertura con l'alone scuro.
+   Tolto tutto cio' che non serve: apertura, lavori, studio, contatti. Solo foto vere. */
+:root{
+  --cream:#EFEDE8; --ink:#141414; --ink-2:#5F5C55; --line:rgba(20,20,20,.14);
+  --dark:#141414; --bone:#EBE9E4; --bone-2:#A8A6A0; --line-d:rgba(235,233,228,.16);
+  --sans:'Barlow','Helvetica Neue',Arial,sans-serif;
+  --mark:'Cormorant Garamond','Times New Roman',serif;
+  --gut:clamp(20px,4vw,64px);
+  --pad:clamp(96px,12vw,180px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+h1,h2,h3,p,ul,figure{margin:0;padding:0}
+ul{list-style:none}
+.cap{font-weight:400;text-transform:uppercase;letter-spacing:.3em;font-size:11px;line-height:1.7}
+.mark{font-family:var(--mark);font-weight:500;font-size:28px;line-height:1;letter-spacing:.01em}
+
+/* HEADER: trasparente sull'apertura, crema dopo */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:20;color:#fff;border-bottom:1px solid transparent;transition:background-color 1s var(--ease),color 1s var(--ease),border-color 1s var(--ease)}
+.hdr.solid{background:var(--cream);color:var(--ink);border-bottom-color:var(--line)}
+.hdr-in{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px var(--gut) 14px}
+.nav{display:flex;gap:clamp(24px,3.4vw,56px)}
+.nav a{position:relative;padding:6px 0;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:400}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+@media (max-width:640px){.hdr-in{flex-direction:row;justify-content:space-between;padding:12px var(--gut)}.mark{font-size:26px}.nav{gap:18px}.nav a{letter-spacing:.2em;font-size:10px}}
+
+/* APERTURA: foto a tutto schermo che sfumano lentamente, alone scuro sopra e sotto */
+.hero{position:relative;height:100vh;height:100svh;min-height:480px;overflow:hidden;background:var(--dark);color:#fff}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 2.2s ease}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:28%;background:linear-gradient(rgba(0,0,0,.42),transparent);pointer-events:none;z-index:1}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(transparent,rgba(0,0,0,.72));pointer-events:none;z-index:1}
+.hcap{position:absolute;z-index:2;left:var(--gut);right:var(--gut);bottom:clamp(28px,4.5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px}
+.htxt{margin:0;font-weight:300}
+.htxt b{display:block;font-weight:300;text-transform:uppercase;letter-spacing:.24em;font-size:clamp(22px,3vw,44px);line-height:1.35}
+.htxt span{display:block;margin-top:14px;opacity:.8}
+.hctl{display:flex;align-items:center;gap:16px}
+.count{font-variant-numeric:tabular-nums}
+.arr{background:none;border:0;color:#fff;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;opacity:.7;transition:opacity .6s var(--ease)}
+.arr:hover{opacity:1}
+.arr svg{width:20px;height:10px}
+@media (max-width:640px){.hcap{grid-template-columns:1fr;gap:16px}.hctl{margin-left:-8px}}
+
+/* SEZIONI: etichetta a sinistra, titolo e testo a destra. Scure quando sono solo testo, chiare con le foto */
+.blk{padding:var(--pad) var(--gut)}
+.blk.dark{background:var(--dark);color:var(--bone)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,6vw,96px)}
+.row .cap{color:var(--ink-2);padding-top:.6em}
+.dark .row .cap,.dark .body{color:var(--bone-2)}
+.lead{font-weight:200;text-transform:uppercase;letter-spacing:.18em;font-size:clamp(20px,2.2vw,32px);line-height:1.55;max-width:24em}
+.body{color:var(--ink-2);max-width:36em;margin-top:clamp(24px,3vw,40px)}
+.body p+p{margin-top:18px}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.pair img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd9d2}
+.pair.rev img{order:2}
+.pair .cap{color:var(--ink-2);margin-bottom:28px}
+.mats{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+@media (max-width:820px){.row,.pair{grid-template-columns:1fr}.pair.rev img{order:0}.row .cap{padding-top:0}}
+
+/* SELECTED WORK: immagini dei materiali, grandi, solo il nome del brand */
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(40px,5vw,80px) clamp(16px,2.6vw,40px);margin-top:clamp(40px,5vw,72px)}
+.piece img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd9d2}
+.piece figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:16px}
+.piece figcaption b{font-weight:300;text-transform:uppercase;letter-spacing:.24em;font-size:13px}
+.piece figcaption span{color:var(--ink-2)}
+@media (max-width:640px){.work{grid-template-columns:1fr;gap:48px}}
+
+/* GRIGLIA LAVORI: 2 colonne x 3 righe, riquadri 4:5, spazi sottili come un profilo Instagram */
+.ig{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+.ig img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#ddd9d2}
+@media (max-width:640px){.ig{gap:2px}}
+
+/* CONTACT: solo testo, scuro */
+.contact .rows{border-top:1px solid var(--line-d);margin-top:clamp(32px,4vw,56px)}
+.rows li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line-d)}
+.rows li span:first-child{color:var(--bone-2)}
+.rows a{color:#fff;text-transform:none;letter-spacing:.06em;font-size:13px;transition:opacity .6s var(--ease)}
+.rows a:hover{opacity:.6}
+.foot{margin-top:clamp(80px,10vw,140px)}
+.foot .mark{color:var(--bone);font-size:24px}
+@media (prefers-reduced-motion:reduce){.slide,.hdr,.nav a::after{transition:none!important}}
+
+/* ===== DINAMICO ===== */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* header: sparisce scendendo, torna risalendo; barra di avanzamento sottile */
+.hdr{transition:background-color 1s var(--ease),color 1s var(--ease),border-color 1s var(--ease),transform .7s var(--ease)}
+.hdr.hide{transform:translateY(-101%)}
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;opacity:0;transition:opacity .6s}
+.hdr.solid .prog{opacity:.55}
+
+/* apertura: zoom lentissimo continuo sulle foto */
+.js .slide img{transform:scale(1.08);transition:transform 9s cubic-bezier(.25,.6,.3,1)}
+.js .slide.on img{transform:scale(1)}
+.js .htxt b{animation:rise 1.5s var(--ease) .3s both}
+.js .htxt span{animation:rise 1.5s var(--ease) .8s both}
+.js .hctl{animation:fade 1.6s ease 1.2s both}
+.count{font-size:11px;letter-spacing:.3em}
+.bar{display:block;width:56px;height:1px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.bar i.run{animation:fill 6s linear forwards}
+
+/* cornici foto: leggero zoom-in quando la foto entra nello schermo */
+.fr,.tile{overflow:hidden;background:#ddd9d2}
+.fr,.tile{aspect-ratio:4/5}
+.pair .fr img,.ig .tile img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+.pair.rev .fr{order:2}
+@media (max-width:820px){.pair.rev .fr{order:0}}
+.js .fr img,.js .tile img{transform:scale(1.12);transition:transform 1.8s var(--ease)}
+.js .fr.in img,.js .tile.in img{transform:scale(1)}
+
+/* comparsa dolce dei testi */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+/* contatti: la linea si disegna */
+.js .contact .rows li{border-bottom-color:transparent;position:relative}
+.js .contact .rows li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line-d);transform:scaleX(0);transform-origin:left;transition:transform 1.5s var(--ease) calc(var(--d,0s) + .15s)}
+.js .contact .rows li.in::after{transform:none}
+</style>
+<link rel="preload" as="image" href="img/hero_stone.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero_jacket.jpg">
+<link rel="preload" as="image" href="img/hero_plaster.jpg">
+<style>@media (hover:none){html{scroll-behavior:auto}}</style>
+</head>
+<body>
+<header class="hdr" id="hdr"><div class="hdr-in">
+  <a href="#top" class="mark" aria-label="antoci, back to top">antoc&#305;</a>
+  <nav class="nav" aria-label="Main"><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+</div><div class="prog" id="prog"></div></header>
+
+<main id="top">
+  <section class="hero" aria-label="Antoci, Sculpture &amp; Design Studio">
+    <figure class="slide on"><img src="img/hero_stone.jpg" alt="Stone shaped by water and by hand" fetchpriority="high" decoding="async"></figure>
+    <figure class="slide"><img src="img/hero_jacket.jpg" alt="Detail of a jacket carved in wood" decoding="async" style="object-position:60% 40%"></figure>
+    <figure class="slide"><img src="img/hero_plaster.jpg" alt="Soft folds of white plaster" decoding="async"></figure>
+    <div class="hcap">
+      <h1 class="htxt"><b>Ideas shaped into matter.</b><span class="cap">Sculpture &amp; Design Studio</span></h1>
+      <div class="hctl cap" aria-hidden="true"><span class="count" id="count">01 / 03</span><span class="bar"><i id="bar"></i></span></div>
+    </div>
+  </section>
+
+  <section class="blk" id="studio" aria-labelledby="studio-h">
+    <div class="pair">
+      <div class="fr"><img src="img/studio_scala.jpg" alt="The white limestone cliffs of the Scala dei Turchi, Sicily" decoding="async"></div>
+      <div>
+        <h2 class="rv cap" id="studio-h">The Studio</h2>
+        <p class="lead rv" style="--d:.12s">Antoci is an Italian sculpture and design studio based in Ragusa, Sicily.</p>
+        <div class="body">
+          <p class="rv" style="--d:0.25s">Working at the intersection of art, design and craftsmanship, the studio conceives and creates sculptural works and distinctive objects, bringing together creative vision, material exploration and hands-on making.</p>
+          <p class="rv" style="--d:0.39s">From the initial idea to the finished piece, each project is approached with attention to form, detail and purpose.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk dark" aria-labelledby="create-h">
+    <div class="row">
+      <h2 class="rv cap" id="create-h">What We Create</h2>
+      <div>
+        <p class="lead rv" style="--d:.12s">From singular pieces to bespoke editions.</p>
+        <div class="body">
+          <p class="rv" style="--d:0.25s">Antoci develops original sculptures, one-of-a-kind objects and commissioned works, alongside limited editions and custom series.</p>
+          <p class="rv" style="--d:0.39s">Projects range from collectible pieces and sculptural objects to creations conceived for brands, exhibitions, events and distinctive spaces.</p>
+          <p class="rv" style="--d:0.53s">Each commission is developed around its own identity, context and intended use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" aria-label="Selected work" style="padding-bottom:0">
+    <div class="ig">
+      <div class="tile"><img src="img/g6_ceramic.jpg" alt="Woven ceramic surface in warm light" decoding="async"></div>
+      <div class="tile"><img src="img/g6_wood.jpg" alt="Interlaced forms carved in wood" decoding="async"></div>
+      <div class="tile"><img src="img/g6_moncler.jpg" alt="Moncler x Salehe Bembury sneaker cast in stone" decoding="async" style="object-position:50% 62%"></div>
+      <div class="tile"><img src="img/hq_marble.jpg" alt="White marble crossed by a pink vein" decoding="async"></div>
+      <div class="tile"><img src="img/g6_audemars.jpg" alt="Audemars Piguet stone pieces on the atelier shelves" decoding="async" style="object-position:50% 100%"></div>
+      <div class="tile"><img src="img/g6_converse.jpg" alt="Converse Shai 001, a sculpted vinyl record on raw white plaster" decoding="async"></div>
+    </div>
+  </section>
+
+  <section class="blk" aria-labelledby="craft-h">
+    <div class="pair rev">
+      <div class="fr"><img src="img/craft_wood.jpg" alt="Gianmarco checking a block of wood as he shapes it by hand" decoding="async"></div>
+      <div>
+        <h2 class="rv cap" id="craft-h">Material &amp; Craft</h2>
+        <p class="lead rv" style="--d:.12s">Made in Italy.<br>Shaped by hand.</p>
+        <div class="body">
+          <p class="rv" style="--d:0.25s">Rooted in its atelier in Ragusa, Sicily, Antoci explores the expressive possibilities of materials through sculptural practice and craftsmanship.</p>
+          <p class="rv" style="--d:0.39s">Wood, ceramic, stone and marble are among the materials that inform the studio&rsquo;s work, with each project guided by the relationship between concept, form and material.</p>
+        </div>
+        <ul class="mats cap" aria-label="Materials"><li class="rv" style="--d:0.45s">Wood</li><li class="rv" style="--d:0.60s">Ceramic</li><li class="rv" style="--d:0.75s">Stone</li><li class="rv" style="--d:0.90s">Marble</li></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="blk dark contact" id="contact" aria-labelledby="contact-h">
+  <div class="row">
+    <h2 class="rv cap" id="contact-h">Contact</h2>
+    <div>
+      <p class="lead rv" style="--d:.12s">Have a project in mind?</p>
+      <div class="body"><p class="rv" style="--d:0.25s">For bespoke commissions, collaborations and enquiries, contact the studio directly.</p></div>
+      <ul class="rows cap" aria-label="Contacts">
+        <li class="rv" style="--d:0.30s"><span>Atelier</span><span>Ragusa, Sicily &mdash; Italy</span></li>
+        <li class="rv" style="--d:0.48s"><span>Email</span><a href="mailto:info@antocisculptures.com">info@antocisculptures.com</a></li>
+        <li class="rv" style="--d:0.66s"><span>Instagram</span><a href="https://www.instagram.com/antocisculptures/" target="_blank" rel="noopener">@antocisculptures</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span class="mark">antoc&#305;</span></div>
+</footer>
+
+<script>
+(function(){
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hdr=document.getElementById('hdr'),hero=document.querySelector('.hero'),prog=document.getElementById('prog');
+  var lastY=window.pageYOffset;
+
+  /* header: crema dopo l'apertura, nascosto scendendo, barra di avanzamento */
+  function onScroll(){
+    var y=window.pageYOffset, hh=hero.offsetHeight;
+    hdr.classList.toggle('solid',y>hh*.8);
+    if(y>hh*.8){
+      if(y>lastY+6)hdr.classList.add('hide'); else if(y<lastY-6)hdr.classList.remove('hide');
+    } else hdr.classList.remove('hide');
+    lastY=y;
+    var max=document.documentElement.scrollHeight-innerHeight;
+    prog.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
+  }
+  var ticking=false;
+  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){onScroll();ticking=false})}},{passive:true});
+  addEventListener('resize',onScroll);onScroll();
+
+  /* apertura: una foto ogni 6 secondi, con contatore e barra */
+  var S=[].slice.call(document.querySelectorAll('.slide')),cur=0,count=document.getElementById('count'),bar=document.getElementById('bar');
+  function runBar(){if(calm)return;bar.classList.remove('run');void bar.offsetWidth;bar.classList.add('run')}
+  function setCount(){count.textContent='0'+(cur+1)+' / 0'+S.length}
+  runBar();
+  if(!calm&&S.length>1)setInterval(function(){if(document.hidden)return;S[cur].classList.remove('on');cur=(cur+1)%S.length;S[cur].classList.add('on');setCount();runBar()},6000);
+
+  /* comparsa al passaggio nello schermo: una volta sola (solo testi) */
+  var els=[].slice.call(document.querySelectorAll('.rv,.fr,.tile'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(list){list.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.08,rootMargin:'0px 0px 8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
