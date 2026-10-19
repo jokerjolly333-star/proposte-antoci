@@ -154,6 +154,10 @@ ul{list-style:none}
 .js .contact .rows li::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line-d);transform:scaleX(0);transform-origin:left;transition:transform 1.5s var(--ease) calc(var(--d,0s) + .15s)}
 .js .contact .rows li.in::after{transform:none}
 </style>
+<link rel="preload" as="image" href="img/hero_stone.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero_jacket.jpg">
+<link rel="preload" as="image" href="img/hero_plaster.jpg">
+<style>.js .cu img{will-change:clip-path,transform;backface-visibility:hidden}@media (hover:none){html{scroll-behavior:auto}.js .cu img{transition-duration:1.1s,1.6s,.5s}}</style>
 </head>
 <body>
 <header class="hdr" id="hdr"><div class="hdr-in">
@@ -163,9 +167,9 @@ ul{list-style:none}
 
 <main id="top">
   <section class="hero" aria-label="Antoci, Sculpture &amp; Design Studio">
-    <figure class="slide on"><img src="img/hero_stone.jpg" alt="Stone shaped by water and by hand" fetchpriority="high"></figure>
-    <figure class="slide"><img src="img/hero_jacket.jpg" alt="Detail of a jacket carved in wood" loading="lazy" style="object-position:60% 40%"></figure>
-    <figure class="slide"><img src="img/hero_plaster.jpg" alt="Soft folds of white plaster" loading="lazy"></figure>
+    <figure class="slide on"><img src="img/hero_stone.jpg" alt="Stone shaped by water and by hand" fetchpriority="high" decoding="async"></figure>
+    <figure class="slide"><img src="img/hero_jacket.jpg" alt="Detail of a jacket carved in wood" decoding="async" style="object-position:60% 40%"></figure>
+    <figure class="slide"><img src="img/hero_plaster.jpg" alt="Soft folds of white plaster" decoding="async"></figure>
     <div class="hcap">
       <h1 class="htxt"><b>Ideas shaped into matter.</b><span class="cap">Sculpture &amp; Design Studio</span></h1>
       <div class="hctl cap" aria-hidden="true"><span class="count" id="count">01 / 03</span><span class="bar"><i id="bar"></i></span></div>
@@ -174,7 +178,7 @@ ul{list-style:none}
 
   <section class="blk" id="studio" aria-labelledby="studio-h">
     <div class="pair">
-      <div class="fr cu"><img src="img/studio_scala.jpg" alt="The white limestone cliffs of the Scala dei Turchi, Sicily" loading="lazy"></div>
+      <div class="fr cu"><img src="img/studio_scala.jpg" alt="The white limestone cliffs of the Scala dei Turchi, Sicily" decoding="async"></div>
       <div>
         <h2 class="rv cap" id="studio-h">The Studio</h2>
         <p class="lead rv" style="--d:.12s">Antoci is an Italian sculpture and design studio based in Ragusa, Sicily.</p>
@@ -202,18 +206,18 @@ ul{list-style:none}
 
   <section class="blk" aria-label="Selected work" style="padding-bottom:0">
     <div class="ig">
-      <div class="tile cu" style="--d:0.00s"><img src="img/g6_ceramic.jpg" alt="Woven ceramic surface in warm light" loading="lazy"></div>
-      <div class="tile cu" style="--d:0.15s"><img src="img/g6_wood.jpg" alt="Interlaced forms carved in wood" loading="lazy"></div>
-      <div class="tile cu" style="--d:0.05s"><img src="img/g6_moncler.jpg" alt="Moncler x Salehe Bembury sneaker cast in stone" loading="lazy" style="object-position:50% 62%"></div>
-      <div class="tile cu" style="--d:0.20s"><img src="img/hq_marble.jpg" alt="White marble crossed by a pink vein" loading="lazy"></div>
-      <div class="tile cu" style="--d:0.10s"><img src="img/g6_audemars.jpg" alt="Audemars Piguet stone pieces on the atelier shelves" loading="lazy" style="object-position:50% 100%"></div>
-      <div class="tile cu" style="--d:0.25s"><img src="img/g6_converse.jpg" alt="Converse Shai 001, a sculpted vinyl record on raw white plaster" loading="lazy"></div>
+      <div class="tile cu" style="--d:0.00s"><img src="img/g6_ceramic.jpg" alt="Woven ceramic surface in warm light" decoding="async"></div>
+      <div class="tile cu" style="--d:0.15s"><img src="img/g6_wood.jpg" alt="Interlaced forms carved in wood" decoding="async"></div>
+      <div class="tile cu" style="--d:0.05s"><img src="img/g6_moncler.jpg" alt="Moncler x Salehe Bembury sneaker cast in stone" decoding="async" style="object-position:50% 62%"></div>
+      <div class="tile cu" style="--d:0.20s"><img src="img/hq_marble.jpg" alt="White marble crossed by a pink vein" decoding="async"></div>
+      <div class="tile cu" style="--d:0.10s"><img src="img/g6_audemars.jpg" alt="Audemars Piguet stone pieces on the atelier shelves" decoding="async" style="object-position:50% 100%"></div>
+      <div class="tile cu" style="--d:0.25s"><img src="img/g6_converse.jpg" alt="Converse Shai 001, a sculpted vinyl record on raw white plaster" decoding="async"></div>
     </div>
   </section>
 
   <section class="blk" aria-labelledby="craft-h">
     <div class="pair rev">
-      <div class="fr cu from-r"><img src="img/craft_wood.jpg" alt="Gianmarco checking a block of wood as he shapes it by hand" loading="lazy"></div>
+      <div class="fr cu from-r"><img src="img/craft_wood.jpg" alt="Gianmarco checking a block of wood as he shapes it by hand" decoding="async"></div>
       <div>
         <h2 class="rv cap" id="craft-h">Material &amp; Craft</h2>
         <p class="lead rv" style="--d:.12s">Made in Italy.<br>Shaped by hand.</p>
@@ -266,7 +270,7 @@ ul{list-style:none}
   /* parallasse leggera sulle foto grandi (solo senza "riduci movimento") */
   var frames=[].slice.call(document.querySelectorAll('.fr')),ticking=false;
   function parallax(){
-    if(calm)return;
+    if(calm||matchMedia('(hover:none)').matches)return;
     frames.forEach(function(f){
       var r=f.getBoundingClientRect();
       if(r.bottom<0||r.top>innerHeight)return;
@@ -287,7 +291,9 @@ ul{list-style:none}
   /* comparsa al passaggio nello schermo: una volta sola */
   var els=[].slice.call(document.querySelectorAll('.rv,.cu'));
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  var io=new IntersectionObserver(function(list){list.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+  function go(t){var im=t.querySelector&&t.querySelector('img');if(im&&!im.complete){im.addEventListener('load',function(){t.classList.add('in')},{once:true});im.addEventListener('error',function(){t.classList.add('in')},{once:true})}else t.classList.add('in')}
+  var io=new IntersectionObserver(function(list){list.forEach(function(en){if(en.isIntersecting){go(en.target);io.unobserve(en.target)}})},{threshold:.08,rootMargin:'0px 0px 8% 0px'});
+  [].slice.call(document.images).forEach(function(i){if(i.decode)i.decode().catch(function(){})});
   els.forEach(function(e){io.observe(e)});
 })();
 </script>
